@@ -1,226 +1,320 @@
-/* Genel stil ayarları */
+
 * {
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box; /* Elemanların genişlik ve yükseklik hesaplamasında padding ve border dahil edilir */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tüm sayfada kullanılacak yazı tipi ailesi */
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  
+  margin: 0; /* Sayfanın etrafındaki varsayılan boşluk kaldırılır */
+  padding: 0; /* Sayfanın içindeki varsayılan boşluk kaldırılır */
   background-color: #fff8f0;
-  color: #333;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  color: #333; /* Metinlerin rengi koyu gri */
+  display: flex; /* Body içeriği flexbox olarak düzenlenir */
+  flex-direction: column; /* Flex öğeleri dikeyde üst üste yerleşir */
+  min-height: 100vh; /* Sayfanın yüksekliği en az görünüm yüksekliği kadar olur */
 }
 
 .wrapper {
-  display: flex;
- 
-  flex-direction: column;
+  display: flex; /* Wrapper  flex  */
+  flex-direction: column; /* İçerik sütunlara yerleşir */
   flex: 1;
 }
 
-/* Header için flexbox */
+/* Header  */
 header {
-  display: flex;
-  justify-content: space-between; /* Sol ve sağ alanı ayır */
-  
-  align-items: center;
-  background-color: #ff6347;
+  display: flex; /* Header içinde elemanlar yatayda flex düzeninde olur */
+  justify-content: space-between; /* Elemanlar arasında mümkün olduğunca boşluk bırakılır */
+  align-items: center; /* Elemanlar dikeyde ortalanır */
+  background-color: #ff2600; 
   color: white;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem; 
 }
 
 .header-left h1 {
-  margin: 0;
-  font-size: 1.5rem;
+  margin: 0; /* Başlığın etrafındaki boşluk kaldırılır */
+  font-size: 1.5rem; 
 }
 
 .header-right {
-  display: flex;
-  gap: 1rem; /* Butonlar arası boşluk */
+  display: flex; /* Sağ üstteki alana yatay flex  */
+  gap: 1rem; /* İçindeki elemanlar arasındaboşluk */
 }
 
 .auth-btn {
-  background-color: #ff6347;  /* Güncellenen kısım */
-  border: 1.5px solid white;
-  color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s, color 0.3s;
+  background-color: #ff2600; 
+  border: 1.5px solid white; 
+  color: white; 
+  padding: 0.3rem 0.8rem; 
+  border-radius: 5px; 
+  cursor: pointer; /* Üzerine gelince fare işaretçisi el olur */
+  font-weight: 600; 
+  transition: background-color 0.3s, color 0.3s; 
 }
 
 .auth-btn:hover {
   background-color: white;
-  color: #ff6347;
+  color: #ff2600; /* Yazı rengi butonun orijinal rengine döner */
 }
 
 /* Footer */
 footer {
-  background-color: #ff6347;
-  color: white;
-  text-align: center;
-  padding: 1rem 0;
-  margin-top: auto;
+  background-color: #ff2600; 
+  color: white; 
+  text-align: center; /* Metin ortalanır */
+  padding: 1rem 0; 
+  margin-top: auto; 
 }
 
-/* Ana içerik */
+/* main */
 main {
-  padding: 2rem 1rem;
-  max-width: 900px;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
+  padding: 2rem 1rem; /* İçerik etrafında  boşluk */
+  max-width: 900px; 
+  margin: auto; /* Ortalanır */
+  display: flex; 
+  flex-wrap: wrap; /* İçerik taşarsa alt satıra geçer */
+  gap: 2rem; 
+  justify-content: center; /* İçerik yatayda ortalanır */
 }
 
-/* Bölümler için esnek genişlik */
+/* Bölümler */
 section {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  flex: 1 1 300px;
-  min-width: 280px;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1;
+  background-color: white; 
+  padding: 1.5rem; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+  flex: 1 1 300px; /* Esneyebilirlik kattık */
+  min-width: 280px; /* Minimum genişlik 280px */
+  box-sizing: border-box; /* Padding ve border genişlik hesabına dahil */
+  position: relative; /* Göreceli konumlandırma, */
+  z-index: 1; /* Diğer katmanların üstünde gösterilir */
 }
 
-/* Shopping list'e özel arka plan */
+/* Shopping List */
 #shopping-section {
-  background-image: url('images/shopping.list.jpeg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  position: relative;
-  z-index: 1;
-  border-radius: 8px;
+  background-image: url('images/shopping.list.jpeg'); 
+  background-size: cover; 
+  background-position: center; 
+  color: white; 
+  position: relative; /* Göreceli konum */
+  z-index: 1; /* Üst katmanda */
+  border-radius: 8px; /* Köşeler yuvarlatılmış */
 }
 
-/* Arka plan karartma efekti */
-#shopping-section::before 
-{
-  content: '';
-  position: absolute;
-  inset: 0;
+#shopping-section::before {
+  content: ''; /* Boş içerik arka plan karartma için */
+  position: absolute; 
+  inset: 0; 
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: -1;
-  border-radius: 8px;
+  z-index: -1; 
+  border-radius: 8px; /* Kaplamanın  köşeleri yuvarlatılır */
 }
 
-/*input-section için arka plan ve karartma efekti 
-
-ZOR YAPTIm DOKUNMA */
-
+/* Input  */
 #input-section {
-  background-image: url('images/ingredients.jpeg');
-  background-size: cover;
-  background-position: center;
+  background-image: url('images/ingredients.jpeg'); 
+  background-size: cover; /* Resim alanı tamamen kaplar */
+  background-position: center; /* Resim ortalanır */
   color: white;
-  position: relative;
-  z-index: 1;
-  border-radius: 8px;
-  padding: 1.5rem;
+  position: relative; /* Görecweli konumlandırma */
+  z-index: 1; 
+  border-radius: 8px; 
+  padding: 1.5rem; /* İçi boşluk */
 }
 
-/*  karartma efekti */
 #input-section::before {
-  content: '';
+  content: ''; 
   position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: -1;
-  border-radius: 8px;
+  inset: 0; 
+  background-color: rgba(0, 0, 0, 0.4); 
+  z-index: -1; /* İçeriğin arkasın nda */
+  border-radius: 8px; 
 }
 
 /* Giriş ve buton */
 input[type="text"] {
-
-  padding: 0.5rem;
-
-  width: 70%;
-  max-width: 400px;
-  margin-right: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.85);
-  color: #333;
+  padding: 0.5rem; /* İç boşluk */
+  width: 70%; 
+  max-width: 400px; 
+  margin-right: 0.5rem; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  background-color: rgba(255, 255, 255, 0.85); /* Yarı saydam beyaz arka plan */
+  color: #333; 
 }
 
-button#search-btn 
-
-{
-  padding: 0.5rem 1rem;
-  background-color: #ff6347;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+button#search-btn {
+  padding: 0.5rem 1rem; /* İç boşluklar */
+  background-color: #ff2600;  
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; /* Fare işaretçisi el olur */
 }
 
 button#search-btn:hover {
-  background-color: #e5533d;
+  background-color: #ff2600; /* Üzerine gelince arka plan sabit kalır */
 }
 
-/*  stiyling  */
-ul 
-{
-   list-style:  none;
-  padding-left: 0;
+/* Liste stilleri */
+ul {
+  list-style: none;
+  padding-left: 0; /* Sol boşluk kaldır */
 }
 
-li 
-{
-    padding: 0.5rem 0;
-  border-bottom:  1px solid #eee;
+li {
+  padding: 0.5rem 0; /* Üst ve alt boşluk */
+  border-bottom: 1px solid #eee; 
 }
 
-/* Bazı ayarlar */
-@media (max-width: 600px) 
-{
+/* Responsive ayarlar */
+@media (max-width: 600px) {
   input[type="text"] {
-         width: 100%;
-    margin-bottom: 0.5rem;
+    width: 100%; /* Küçük ekranlarda input genişliği*/
+    margin-bottom: 0.5rem; /* Alt boşluk */
   }
 
   button#search-btn {
-    width:   100%;
+    width: 100%; /* Buton genişliği tam */
   }
 
   main {
-      flex-direction: column;
-    padding: 1rem;
+    flex-direction: column; /* İçerik dikey yerleşir */
+    padding: 1rem; /* İç boşluk küçültülür */
   }
 
-  section 
-  {
-    min-width: 100%;
+  section {
+    min-width: 100%; /* Bölüm genişliği tam genişlik olur */
   }
 
-  header
-   {
-     flex-direction: column;
-    align-items: flex-start;
-
-    gap: 0.5rem;
+  header {
+    flex-direction: column; /* Header dikey yerleşim */
+    align-items: flex-start; /* Sol hizalama */
+    gap: 0.5rem; /* Elemanlar arası boşluk */
   }
 
-  .header-right 
-  {
-    width: 100%;
-
-     justify-content:  flex-start;
+  .header-right {
+    width: 100%; /* Sağ kısım tam genişlik */
+    justify-content: flex-start; /* İçerik sola yaslanır */
   }
 
-  .auth-btn 
-  {
-    flex: 1 ;
-    text-align: center;
+  .auth-btn {
+    flex: 1; /* Buton esneyebilir */
+    text-align: center; /* Metin ortalanır */
   }
+}
+
+/* Recipes */
+#recipes-section {
+  background-image: url('images/recipes.jpeg');
+  background-size: cover; 
+  background-position: center; /* Resim ortalanır */
+  color: white; 
+  position: relative; 
+  z-index: 1; /* Üst katman */
+  border-radius: 8px; 
+  min-height: 250px; 
+  display: flex; /* Flex */
+  flex-direction: column; /* dikey yerleşim */
+  justify-content: flex-start; /* İçeriği yukarı yaslar */
+}
+
+#recipes-section::before {
+  content: ''; 
+  position: absolute;
+  inset: 0; /* Tam kaplama */
+  background-color: rgba(0, 0, 0, 0.3); 
+  z-index: -1; /* İçeriğin arkasında */
+  border-radius: 8px; 
+}
+
+/* Favorites  */
+#favorites-section {
+  background-image: url('images/favorite\ recipes.jpeg'); 
+  background-size: cover; /* Kaplaa */
+  background-position: center; /* Ortalanır */
+  color: white; 
+  position: relative; /* Göreceli konum */
+  z-index: 1; /* Üst katman */
+  border-radius: 8px; /* Köşeler yuvarlatılmış */
+  min-height: 250px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+}
+
+#favorites-section::before {
+  content: ''; 
+  position: absolute; /* Üste konumlandıwrma */
+  inset: 0; /* Tam kaplama */
+  background-color: rgba(0, 0, 0, 0.3); 
+  z-index: -1; 
+  border-radius: 8px; 
+}
+
+/* Complete Menu  */
+#complete-menu-section {
+  background-image: url('images/menu.jpeg'); /* background image */
+  background-size: cover; 
+  background-position: center; 
+  color: white; 
+  position: relative; 
+  z-index: 1; 
+  border-radius: 8px; 
+  min-height: 250px; /* Minimum yükseklik */
+  display: flex; 
+  flex-direction: column; /* Dikey yerleşim */
+  justify-content: flex-start; /* Yukarı hizalama */
+}
+
+#complete-menu-section::before {
+  content: ''; 
+  position: absolute; 
+  inset: 0; /* Tam kaplama */
+  background-color: rgba(0, 0, 0, 0.3); 
+  z-index: -1; 
+  border-radius: 8px; 
+}
+
+/* 81 City 81 Flavours */
+#city-flavours-section {
+  background-image: url('images/flavours.jpeg'); /* background image */
+  background-size: cover; /* Resim kaplama */
+  background-position: center; /* Ortala */
+  color: white; 
+  position: relative; 
+  z-index: 1; 
+  border-radius: 8px; /* Köşe görünümü azaltma */
+  min-height: 80px; 
+  display: flex; 
+  justify-content: flex-start; /* İçerik sola hizalanır */
+  align-items: flex-start; /* İçerik yukarı hizalanır */
+  padding: 1rem 1.2rem; 
+  margin-top: 1rem; /* Üstten boşluk */
+}
+
+#city-flavours-section::before {
+  content: ''; /* Boş içerik */
+  position: absolute; 
+  inset: 0; 
+  background-color: rgba(0, 0, 0, 0.3); /* Karartma */
+  z-index: -1; 
+  border-radius: 8px; 
+}
+
+/* Buton stili  */
+.flavour-btn {
+  background-color: #ff2600; 
+  border: 1.5px solid white; 
+  color: white; 
+  padding: 0.5rem 1.2rem; /* İç boşluk */
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-weight: 600; 
+  transition: background-color 0.3s, color 0.3s; /* Renk geçişi */
+  font-size: 1rem; 
+}
+
+.flavour-btn:hover {
+  background-color: white; 
+  color: #ff2600; 
 }
