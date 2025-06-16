@@ -12,31 +12,27 @@
       <div class="header-left">   
         <h1>Turkiye Wide Flavours</h1>
       </div>
-      <div class="header-right">
-        <button class="auth-btn">Sign up</button>
-        <button class="auth-btn">Log in</button>
-      </div>
     </header>
 
     <main>
       <section id="input-section">
         <h2>Enter Ingredients</h2>
-        <input type="text" id="ingredient-input" placeholder="e.g., eggs, milk, flour" />
-        <button id="search-btn">Find Recipes</button>
+        <button id="open-ingredient-modal" class="flavour-btn">Select Ingredients 🔒</button>
       </section>
-
+      
       <section id="recipes-section">
         <h2>Recipes</h2>
         <div id="recipe-results">
-          <!-- Recipe cards will be listed here -->
+          <button id="open-recipes-btn" class="flavour-btn">Open All Recipes</button>
         </div>
       </section>
 
       <section id="favorites-section">
         <h2>Favorite Recipes</h2>
-        <ul id="favorites-list">
+        <div id="favorites-list">
+          <button id="open-favorites-btn" class="flavour-btn">Open Marked Recipes</button>
           <!-- Favorite recipes will be displayed here -->
-        </ul>
+        </div>
       </section>
 
       <section id="shopping-section">
@@ -57,6 +53,43 @@
       <section id="city-flavours-section">
         <h2>81 City 81 Flavours</h2>
       </section>
+
+      <!-- Ingredient Selection Modal (separated for better control) -->
+      <div id="ingredient-modal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Select Ingredients</h3>
+    <ul id="ingredient-list">
+      <li data-ingredient="Eggs">Eggs</li>
+      <li data-ingredient="Milk">Milk</li>
+      <li data-ingredient="Flour">Flour</li>
+      <li data-ingredient="Sugar">Sugar</li>
+      <li data-ingredient="Butter">Butter</li>
+      <li data-ingredient="Tomato">Tomato</li>
+      <li data-ingredient="Cheese">Cheese</li>
+      <li data-ingredient="Chicken">Chicken</li>
+      <li data-ingredient="Beans">Beans</li>
+      <li data-ingredient="Rice">Rice</li>
+      <li data-ingredient="Pasta">Pasta</li>
+      <li data-ingredient="Bread">Bread</li>
+      <li data-ingredient="Potatoes">Potatoes</li>
+      <li data-ingredient="Bulgur">Bulgur</li>
+      <li data-ingredient="Sunflower oil">Sunflower oil</li>
+      <li data-ingredient="Olive oil">Olive oil</li>
+      <li data-ingredient="Onion">Onion</li>
+      <li data-ingredient="Garlic">Garlic</li>
+      <li data-ingredient="Carrots">Carrots</li>
+      <li data-ingredient="Green pepper">Green pepper</li>
+      <li data-ingredient="Salt">Salt</li>
+      <li data-ingredient="Water">Water</li>
+      <li data-ingredient="Beef">Beef</li>
+      <li data-ingredient="Yogurt">Yogurt</li>
+    </ul>
+    <button id="confirm-ingredients" class="flavour-btn">Confirm</button>
+    <button id="close-modal" class="flavour-btn cancel-btn">Cancel</button>
+  </div>
+</div>
+
+      <script src="script.js"></script>
     </main>
 
     <footer>

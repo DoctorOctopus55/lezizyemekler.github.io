@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Filtered Recipes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    #favorite-recipes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      overflow-y: auto;
+      flex-grow: 1;
+      padding-right: 0.5rem;
+    }
+    .recipe-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1rem;
+      flex: 0 0 280px;
+      height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .recipe-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .recipe-image {
+      width: 100%;
+      height: 180px;
+      background-color: #ddd;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      background-size: cover;
+      background-position: center;
+    }
+    .recipe-title {
+      font-size: 1.25rem;
+      margin: 0 0 0.5rem 0;
+    }
+    .recipe-description {
+      flex-grow: 1;
+      font-size: 1rem;
+      color: #555;
+    }
+    .favorite-btn {
+      margin-top: 1rem;
+      align-self: flex-start;
+      background-color: #ff2600;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .favorite-btn.favorited {
+      background-color: gold;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Filtered Recipes</h1>
+  <div id="favorite-recipes"></div>
+
+  <script>
+    // Your recipes array — make sure to include all recipes here exactly as in main page
+    const recipes = [
+      {
+        id: 1,
+        title: "Tomato Soup",
+        description: "Delicious homemade tomato soup.",
+        image: "https://via.placeholder.com/280x180?text=Tomato+Soup",
+        ingredients: ["Tomato", "Onion", "Garlic", "Salt", "Water", "Butter"]
+      },
+      {
+        id: 2,
+        title: "Cheese Omelette",
+        description: "Simple and cheesy omelette.",
+        image: "https://via.placeholder.com/280x180?text=Cheese+Omelette",
+        ingredients: ["Eggs", "Cheese", "Milk", "Butter", "Salt"]
+      },
+      {
+        id: 3,
+        title: "Chicken Curry",
+        description: "Spicy and tasty chicken curry.",
+        image: "https://via.placeholder.com/280x180?text=Chicken+Curry",
+        ingredients: ["Chicken", "Onion", "Garlic", "Tomato", "Salt", "Olive oil"]
+      },
+      {
+        id: 4,
+        title: "Sucuklu Yumurta",
+        description: "Spicy and tasty sucuklu yumurta.",
+        image: "https://via.placeholder.com/280x180?text=Sucuklu+Yumurta",
+        ingredients: ["Eggs", "Butter", "Salt", "Green pepper"]
+      },
+      {
+        id: 5,
+        title: "Beef Stew",
+        description: "Hearty beef stew with vegetables.",
+        image: "https://via.placeholder.com/280x180?text=Beef+Stew",
+        ingredients: ["Beef", "Onion", "Carrots", "Potatoes", "Garlic", "Salt", "Water"]
+      },
+      {
+        id: 6,
+        title: "Pasta with Tomato Sauce",
+        description: "Classic pasta with fresh tomato sauce.",
+        image: "https://via.placeholder.com/280x180?text=Pasta+Tomato+Sauce",
+        ingredients: ["Pasta", "Tomato", "Onion", "Garlic", "Olive oil", "Salt"]
+      },
+      {
+        id: 7,
+        title: "Rice Pilaf",
+        description: "Fluffy rice pilaf cooked in butter.",
+        image: "https://via.placeholder.com/280x180?text=Rice+Pilaf",
+        ingredients: ["Rice", "Butter", "Salt", "Water"]
+      },
+      {
+        id: 8,
+        title: "Beans Salad",
+        description: "Fresh beans salad with olive oil.",
+        image: "https://via.placeholder.com/280x180?text=Beans+Salad",
+        ingredients: ["Beans", "Tomato", "Onion", "Olive oil", "Salt"]
+      },
+      {
+        id: 9,
+        title: "Bulgur Pilaf",
+        description: "Traditional bulgur pilaf with vegetables.",
+        image: "https://via.placeholder.com/280x180?text=Bulgur+Pilaf",
+        ingredients: ["Bulgur", "Tomato", "Onion", "Butter", "Salt", "Water"]
+      },
+      {
+        id: 10,
+        title: "Garlic Bread",
+        description: "Crunchy garlic bread with butter.",
+        image: "https://via.placeholder.com/280x180?text=Garlic+Bread",
+        ingredients: ["Bread", "Garlic", "Butter", "Salt"]
+      }
+    ];
+
+  const filteredIds = JSON.parse(localStorage.getItem('filteredRecipeIds')) || [];
+  const container = document.getElementById('favorite-recipes');
+
+  // Load favorites from localStorage or empty array
+  let favorites = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+
+  function saveFavorites() {
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favorites));
+  }
+
+  function isFavorited(id) {
+    return favorites.includes(id);
+  }
+
+  function toggleFavorite(id, button) {
+    if (isFavorited(id)) {
+      favorites = favorites.filter(favId => favId !== id);
+      button.classList.remove('favorited');
+      button.textContent = '⭐ Favorite';
+    } else {
+      favorites.push(id);
+      button.classList.add('favorited');
+      button.textContent = '⭐ Favorited';
+    }
+    saveFavorites();
+  }
+
+  if (filteredIds.length === 0) {
+    container.innerHTML = '<p>No recipes found for the selected ingredients.</p>';
+  } else {
+    const filteredRecipes = recipes.filter(r => filteredIds.includes(r.id));
+
+    filteredRecipes.forEach(recipe => {
+      const card = document.createElement('div');
+      card.className = 'recipe-card';
+
+      const imgDiv = document.createElement('div');
+      imgDiv.className = 'recipe-image';
+      imgDiv.style.backgroundImage = `url(${recipe.image})`;
+
+      const title = document.createElement('h2');
+      title.className = 'recipe-title';
+      title.textContent = recipe.title;
+
+      const desc = document.createElement('p');
+      desc.className = 'recipe-description';
+      desc.textContent = recipe.description;
+
+      const favBtn = document.createElement('button');
+      favBtn.className = 'favorite-btn';
+      if (isFavorited(recipe.id)) {
+        favBtn.classList.add('favorited');
+        favBtn.textContent = 'Favorited';
+      } else {
+        favBtn.textContent = '⭐ Favorite';
+      }
+
+      favBtn.addEventListener('click', () => {
+        toggleFavorite(recipe.id, favBtn);
+      });
+
+      card.appendChild(imgDiv);
+      card.appendChild(title);
+      card.appendChild(desc);
+      card.appendChild(favBtn);
+
+      container.appendChild(card);
+    });
+  }
+  </script>
+</body>
+</html>

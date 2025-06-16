@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All Recipes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      height: 90vh; /* make viewport height smaller for scroll test */
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    #all-recipes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      overflow-y: auto;
+      flex-grow: 1; /* fill remaining vertical space */
+      padding-right: 0.5rem; /* space for scrollbar */
+    }
+    .recipe-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1rem;
+      flex: 0 0 280px; /* fixed width */
+      height: 360px; /* fixed height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .recipe-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .recipe-image {
+      width: 100%;
+      height: 180px;
+      background-color: #ddd;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+    .favorite-btn {
+      margin-top: 1rem;
+      align-self: flex-start;
+      background-color: #ff2600;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .favorite-btn.favorited {
+      background-color: gold;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>All Recipes</h1>
+  <div id="all-recipes">
+    <!-- Recipes will be inserted here -->
+  </div>
+
+  <script>
+    // Static recipe data with image URLs
+const recipes = [
+  {
+    id: 1,
+    title: "Tomato Soup",
+    description: "Delicious homemade tomato soup.",
+    image: "https://via.placeholder.com/280x180?text=Tomato+Soup",
+    ingredients: ["Tomato", "Onion", "Garlic", "Salt", "Water", "Butter"]
+  },
+  {
+    id: 2,
+    title: "Cheese Omelette",
+    description: "Simple and cheesy omelette.",
+    image: "https://via.placeholder.com/280x180?text=Cheese+Omelette",
+    ingredients: ["Eggs", "Cheese", "Milk", "Butter", "Salt"]
+  },
+  {
+    id: 3,
+    title: "Chicken Curry",
+    description: "Spicy and tasty chicken curry.",
+    image: "https://via.placeholder.com/280x180?text=Chicken+Curry",
+    ingredients: ["Chicken", "Onion", "Garlic", "Tomato", "Salt", "Olive oil"]
+  },
+  {
+    id: 4,
+    title: "Sucuklu Yumurta",
+    description: "Spicy and tasty sucuklu yumurta.",
+    image: "https://via.placeholder.com/280x180?text=Sucuklu+Yumurta",
+    ingredients: ["Eggs", "Butter", "Salt", "Green pepper"]
+  },
+  {
+    id: 5,
+    title: "Beef Stew",
+    description: "Hearty beef stew with vegetables.",
+    image: "https://via.placeholder.com/280x180?text=Beef+Stew",
+    ingredients: ["Beef", "Onion", "Carrots", "Potatoes", "Garlic", "Salt", "Water"]
+  },
+  {
+    id: 6,
+    title: "Pasta with Tomato Sauce",
+    description: "Classic pasta with fresh tomato sauce.",
+    image: "https://via.placeholder.com/280x180?text=Pasta+Tomato+Sauce",
+    ingredients: ["Pasta", "Tomato", "Onion", "Garlic", "Olive oil", "Salt"]
+  },
+  {
+    id: 7,
+    title: "Rice Pilaf",
+    description: "Fluffy rice pilaf cooked in butter.",
+    image: "https://via.placeholder.com/280x180?text=Rice+Pilaf",
+    ingredients: ["Rice", "Butter", "Salt", "Water"]
+  },
+  {
+    id: 8,
+    title: "Beans Salad",
+    description: "Fresh beans salad with olive oil.",
+    image: "https://via.placeholder.com/280x180?text=Beans+Salad",
+    ingredients: ["Beans", "Tomato", "Onion", "Olive oil", "Salt"]
+  },
+  {
+    id: 9,
+    title: "Bulgur Pilaf",
+    description: "Traditional bulgur pilaf with vegetables.",
+    image: "https://via.placeholder.com/280x180?text=Bulgur+Pilaf",
+    ingredients: ["Bulgur", "Tomato", "Onion", "Butter", "Salt", "Water"]
+  },
+  {
+    id: 10,
+    title: "Garlic Bread",
+    description: "Crunchy garlic bread with butter.",
+    image: "https://via.placeholder.com/280x180?text=Garlic+Bread",
+    ingredients: ["Bread", "Garlic", "Butter", "Salt"]
+  },
+  {
+    id: 11,
+    title: "Lentil Soup",
+    description: "Warm and hearty lentil soup.",
+    image: "https://via.placeholder.com/280x180?text=Lentil+Soup",
+    ingredients: ["Lentils", "Carrot", "Onion", "Tomato paste", "Olive oil", "Salt", "Water"]
+  },
+  {
+    id: 12,
+    title: "Menemen",
+    description: "Traditional Turkish scrambled eggs with tomatoes.",
+    image: "https://via.placeholder.com/280x180?text=Menemen",
+    ingredients: ["Eggs", "Tomato", "Onion", "Green pepper", "Olive oil", "Salt"]
+  },
+  {
+    id: 13,
+    title: "Grilled Salmon",
+    description: "Healthy grilled salmon with lemon.",
+    image: "https://via.placeholder.com/280x180?text=Grilled+Salmon",
+    ingredients: ["Salmon", "Lemon", "Garlic", "Olive oil", "Salt", "Black pepper"]
+  },
+  {
+    id: 14,
+    title: "Stuffed Peppers",
+    description: "Colorful bell peppers stuffed with rice and spices.",
+    image: "https://via.placeholder.com/280x180?text=Stuffed+Peppers",
+    ingredients: ["Bell pepper", "Rice", "Onion", "Tomato paste", "Olive oil", "Salt"]
+  },
+  {
+    id: 15,
+    title: "French Toast",
+    description: "Sweet and soft French toast.",
+    image: "https://via.placeholder.com/280x180?text=French+Toast",
+    ingredients: ["Bread", "Eggs", "Milk", "Sugar", "Butter", "Cinnamon"]
+  },
+  {
+    id: 16,
+    title: "Greek Salad",
+    description: "Fresh Greek salad with feta cheese.",
+    image: "https://via.placeholder.com/280x180?text=Greek+Salad",
+    ingredients: ["Tomato", "Cucumber", "Onion", "Feta", "Olives", "Olive oil", "Salt"]
+  },
+  {
+    id: 17,
+    title: "Pancakes",
+    description: "Fluffy pancakes perfect for breakfast.",
+    image: "https://via.placeholder.com/280x180?text=Pancakes",
+    ingredients: ["Flour", "Eggs", "Milk", "Sugar", "Baking powder", "Butter"]
+  },
+  {
+    id: 18,
+    title: "Spaghetti Carbonara",
+    description: "Creamy Italian pasta with bacon.",
+    image: "https://via.placeholder.com/280x180?text=Carbonara",
+    ingredients: ["Spaghetti", "Eggs", "Parmesan", "Bacon", "Black pepper", "Salt"]
+  },
+  {
+    id: 19,
+    title: "Eggplant Moussaka",
+    description: "Layered eggplant and meat dish.",
+    image: "https://via.placeholder.com/280x180?text=Moussaka",
+    ingredients: ["Eggplant", "Ground beef", "Tomato", "Onion", "Olive oil", "Salt"]
+  },
+  {
+    id: 20,
+    title: "Zucchini Fritters",
+    description: "Crispy zucchini fritters with herbs.",
+    image: "https://via.placeholder.com/280x180?text=Zucchini+Fritters",
+    ingredients: ["Zucchini", "Eggs", "Flour", "Onion", "Parsley", "Salt", "Olive oil"]
+  }
+];
+    const container = document.getElementById('all-recipes');
+
+    // Load favorites from localStorage
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    function saveFavorites() {
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+
+    function toggleFavorite(recipeId, button) {
+      if(favorites.includes(recipeId)) {
+        favorites = favorites.filter(id => id !== recipeId);
+        button.classList.remove('favorited');
+        button.textContent = '⭐ Favorite';
+      } else {
+        favorites.push(recipeId);
+        button.classList.add('favorited');
+        button.textContent = '⭐ Favorited';
+      }
+      saveFavorites();
+    }
+
+    recipes.forEach(recipe => {
+      const card = document.createElement('div');
+      card.classList.add('recipe-card');
+
+      card.innerHTML = `
+        <div class="recipe-image" style="background-image: url('${recipe.image}')"></div>
+        <h2>${recipe.title}</h2>
+        <p>${recipe.description}</p>
+      `;
+
+      const favButton = document.createElement('button');
+      favButton.classList.add('favorite-btn');
+      favButton.textContent = favorites.includes(recipe.id) ? '⭐ Favorited' : '⭐ Favorite';
+
+      if(favorites.includes(recipe.id)) {
+        favButton.classList.add('favorited');
+      }
+
+      favButton.addEventListener('click', () => toggleFavorite(recipe.id, favButton));
+
+      card.appendChild(favButton);
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>

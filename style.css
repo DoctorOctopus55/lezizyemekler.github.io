@@ -98,6 +98,7 @@ section {
   position: relative; /* Göreceli konum */
   z-index: 1; /* Üst katmanda */
   border-radius: 8px; /* Köşeler yuvarlatılmış */
+  cursor: pointer;
 }
 
 #shopping-section::before {
@@ -107,6 +108,11 @@ section {
   background-color: rgba(0, 0, 0, 0.4);
   z-index: -1; 
   border-radius: 8px; /* Kaplamanın  köşeleri yuvarlatılır */
+}
+
+#shopping-section:hover{
+  transition: 300ms all;
+  transform: scale(1.05);
 }
 
 /* Input  */
@@ -119,6 +125,8 @@ section {
   z-index: 1; 
   border-radius: 8px; 
   padding: 1.5rem; /* İçi boşluk */
+  order: -1;
+  cursor: pointer;
 }
 
 #input-section::before {
@@ -130,29 +138,64 @@ section {
   border-radius: 8px; 
 }
 
-/* Giriş ve buton */
-input[type="text"] {
-  padding: 0.5rem; /* İç boşluk */
-  width: 70%; 
-  max-width: 400px; 
-  margin-right: 0.5rem; 
-  border: 1px solid #ccc; 
-  border-radius: 4px; 
-  background-color: rgba(255, 255, 255, 0.85); /* Yarı saydam beyaz arka plan */
-  color: #333; 
+#input-section:hover{
+  transition: 300ms all;
+  transform: scale(1.05);
+}
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-button#search-btn {
-  padding: 0.5rem 1rem; /* İç boşluklar */
-  background-color: #ff2600;  
-  color: white; 
-  border: none; 
-  border-radius: 4px; 
-  cursor: pointer; /* Fare işaretçisi el olur */
+.modal-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  color: #333;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-button#search-btn:hover {
-  background-color: #ff2600; /* Üzerine gelince arka plan sabit kalır */
+.hidden {
+  display: none;
+}
+
+#ingredient-list {
+  max-height: 200px; /* or any height you want */
+  overflow-y: auto;
+  padding-right: 0.5rem; /* optional, for scrollbar padding */
+  margin: 0; /* remove default margin if needed */
+}
+
+#ingredient-list li {
+  cursor: pointer;
+  padding: 0.4rem;
+  border-bottom: 1px solid #ddd;
+}
+
+#ingredient-list li.selected {
+  background-color: #ff2600;
+  color: white;
+  font-weight: bold;
+}
+
+/* Cancel button overrides */
+.cancel-btn {
+  background-color: #aaa;
+  border-color: #999;
+  margin-left: 1rem;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #888;
+  color: white;
 }
 
 /* Liste stilleri */
@@ -216,6 +259,7 @@ li {
   display: flex; /* Flex */
   flex-direction: column; /* dikey yerleşim */
   justify-content: flex-start; /* İçeriği yukarı yaslar */
+  cursor: pointer;
 }
 
 #recipes-section::before {
@@ -226,6 +270,12 @@ li {
   z-index: -1; /* İçeriğin arkasında */
   border-radius: 8px; 
 }
+
+#recipes-section:hover{
+  transition: 300ms all;
+  transform: scale(1.05);
+}
+
 
 /* Favorites  */
 #favorites-section {
@@ -240,6 +290,7 @@ li {
   display: flex; 
   flex-direction: column; 
   justify-content: flex-start; 
+  cursor: pointer;
 }
 
 #favorites-section::before {
@@ -250,6 +301,12 @@ li {
   z-index: -1; 
   border-radius: 8px; 
 }
+
+#favorites-section:hover{
+  transition: 300ms all;
+  transform: scale(1.05);
+}
+
 
 /* Complete Menu  */
 #complete-menu-section {
@@ -264,6 +321,7 @@ li {
   display: flex; 
   flex-direction: column; /* Dikey yerleşim */
   justify-content: flex-start; /* Yukarı hizalama */
+  cursor: pointer;
 }
 
 #complete-menu-section::before {
@@ -273,6 +331,11 @@ li {
   background-color: rgba(0, 0, 0, 0.3); 
   z-index: -1; 
   border-radius: 8px; 
+}
+
+#complete-menu-section:hover{
+  transition: 300ms all;
+  transform: scale(1.05);
 }
 
 /* 81 City 81 Flavours */
@@ -290,6 +353,7 @@ li {
   align-items: flex-start; /* İçerik yukarı hizalanır */
   padding: 1rem 1.2rem; 
   margin-top: 1rem; /* Üstten boşluk */
+  cursor: pointer;
 }
 
 #city-flavours-section::before {
@@ -300,6 +364,12 @@ li {
   z-index: -1; 
   border-radius: 8px; 
 }
+
+#city-flavours-section:hover{
+  transition: 300ms all;
+  transform: scale(1.05);
+}
+
 
 /* Buton stili  */
 .flavour-btn {

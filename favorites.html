@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Favorite Recipes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    #favorite-recipes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      overflow-y: auto;
+      flex-grow: 1;
+      padding-right: 0.5rem;
+    }
+    .recipe-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1rem;
+      flex: 0 0 280px;
+      height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      transition: transform 0.3s ease;
+    }
+    .recipe-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .recipe-image {
+      width: 100%;
+      height: 180px;
+      background-color: #ddd;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      background-size: cover;
+      background-position: center;
+    }
+    .recipe-title {
+      font-size: 1.25rem;
+      margin: 0 0 0.5rem 0;
+    }
+    .recipe-description {
+      flex-grow: 1;
+      font-size: 1rem;
+      color: #555;
+    }
+    .favorite-btn {
+      margin-top: 1rem;
+      align-self: flex-start;
+      background-color: #ff2600;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .favorite-btn.favorited {
+      background-color: gold;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Favorite Recipes</h1>
+  <div id="favorite-recipes"></div>
+
+  <script>
+    // Recipe data (duplicated for testing)
+    const recipes = [
+      { id: 1, title: "Tomato Soup", description: "Delicious homemade tomato soup.", image: "https://via.placeholder.com/280x180?text=Tomato+Soup" },
+      { id: 2, title: "Cheese Omelette", description: "Simple and cheesy omelette.", image: "https://via.placeholder.com/280x180?text=Cheese+Omelette" },
+      { id: 3, title: "Chicken Curry", description: "Spicy and tasty chicken curry.", image: "https://via.placeholder.com/280x180?text=Chicken+Curry" },
+      { id: 4, title: "Sucuklu Yumurta", description: "Spicy and tasty sucuklu yumurta.", image: "https://via.placeholder.com/280x180?text=Sucuklu+Yumurta" },
+      { id: 5, title: "Tomato Soup", description: "Another one for testing.", image: "https://via.placeholder.com/280x180?text=Tomato+Soup+2" }
+    ];
+
+    const container = document.getElementById('favorite-recipes');
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    function saveFavorites() {
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+
+    function toggleFavorite(recipeId, button) {
+        if (favorites.includes(recipeId)) {
+            favorites = favorites.filter(id => id !== recipeId);
+            saveFavorites();
+
+            button.classList.remove('favorited');
+            button.textContent = '⭐ Favorite';
+
+            // Remove the recipe card element from the DOM
+            const card = button.closest('.recipe-card');
+            if (card) {
+                card.remove();
+            }
+        } else {
+            favorites.push(recipeId);
+            saveFavorites();
+
+            button.classList.add('favorited');
+            button.textContent = '⭐ Favorited';
+        }
+    }
+
+    // Only render favorites on load
+    const favoriteRecipes = recipes.filter(recipe => favorites.includes(recipe.id));
+
+    if (favoriteRecipes.length === 0) {
+    container.innerHTML = '<p>No favorite recipes yet.</p>';
+    } else {
+    favoriteRecipes.forEach(recipe => {
+        const card = document.createElement('div');
+        card.classList.add('recipe-card');
+
+        card.innerHTML = `
+        <div class="recipe-image" style="background-image: url('${recipe.image}')"></div>
+        <h2 class="recipe-title">${recipe.title}</h2>
+        <p class="recipe-description">${recipe.description}</p>
+        `;
+
+        const favButton = document.createElement('button');
+        favButton.classList.add('favorite-btn');
+        favButton.textContent = '⭐ Favorited';
+        favButton.classList.add('favorited');
+
+        favButton.addEventListener('click', () => toggleFavorite(recipe.id, favButton));
+
+        card.appendChild(favButton);
+        container.appendChild(card);
+    });
+    }
+  </script>
+</body>
+</html>
