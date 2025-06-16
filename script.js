@@ -205,11 +205,3 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '/filtered-recipes.html';
         });
 });
-
-document.getElementById('open-recipes-btn').addEventListener('click', () => {
-  window.location.href = '/recipes.html';  // or '/recipes' if you use routing/server
-});
-
-document.getElementById('open-favorites-btn').addEventListener('click', () => {
-    window.location.href = '/favorites.html';
-});
