@@ -24,8 +24,7 @@ body {
   color: #333;
   padding: 1rem;
   max-width: 100%;
-  align-items: center;        /* yatayda ortala */
-  justify-content: center;    /* dikeyde ortala */
+  align-items: center;
 }
   h1 {
     text-align: center;
@@ -116,15 +115,17 @@ body {
       width: 100%;
     }
   }
+  
 </style>
 </head>
 <body>
 
-<h1>Ideal Dinner Recipes</h1>
+<h1>Ideal Dinner Menus</h1>
 
 <div id="dinners-container"></div>
 
 <script>
+  //all recipes
   const recipes = [
     {
       "id": 1,
@@ -193,7 +194,7 @@ body {
       "id": 8,
       "origin": "Artvin",
       "title": "Mahluta Corbasi",
-      "image": "food/08.jpeg",
+      "image": "food/08.jpg",
       "description": "A hearty lentil-based soup popular in the Black Sea region.",
       "ingredients": ["Bulgur", "Onion", "Olive oil", "Carrots", "Salt", "Spices"],
       "recipe": "Saute chopped onion and carrots in olive oil. \nAdd bulgur, water, salt, and spices. \nSimmer until ingredients soften. \nMash lightly or blend for smooth texture. \nServe hot with lemon juice if desired. Done!"
@@ -310,7 +311,7 @@ body {
       "id": 18,
       "origin": "Cankiri",
       "title": "Cankiri Yogurtlu Et",
-      "image": "food/18.jpeg",
+      "image": "food/18.jpg",
       "description": "Boiled meat topped with yogurt and butter sauce, a classic from Cankiri.",
       "ingredients": ["Beef", "Yogurt", "Garlic", "Butter", "Salt"],
       "recipe": "Boil beef until tender. \nMix yogurt with crushed garlic and salt. \nPlace meat on plate. \nTop with garlic yogurt. \nDrizzle with melted butter. Done!"
@@ -346,7 +347,7 @@ body {
       "id": 81,
       "origin": "Duzce",
       "title": "Melenguccegi Tatlisi",
-      "image": "food/81.jpeg",
+      "image": "food/81.jpg",
       "description": "A local dessert made with dough, walnuts, and syrup.",
       "ingredients": ["Flour", "Walnuts", "Butter", "Sugar", "Water"],
       "recipe": "Prepare dough and roll thin. \nFill with ground walnuts and fold. \nBake until golden. \nPour hot syrup over. \nCool and serve. Done!"
@@ -391,7 +392,7 @@ body {
       "id": 26,
       "origin": "Eskisehir",
       "title": "Cigborek",
-      "image": "food/26.jpeg",
+      "image": "food/26.jpg",
       "description": "Deep-fried pastries with a raw meat filling.",
       "ingredients": ["Flour", "Beef", "Onion", "Salt", "Black pepper", "Water"],
       "recipe": "Prepare dough with flour and water. \nFill with raw beef and onion mix. \nSeal and deep-fry until golden. \nServe hot. Done!"
@@ -445,7 +446,7 @@ body {
       "id": 32,
       "origin": "Isparta",
       "title": "Kabune",
-      "image": "food/32.jpeg",
+      "image": "food/32.jpg",
       "description": "A pilaf with beef and onion, a well-known Isparta dish.",
       "ingredients": ["Beef", "Onion", "Rice", "Butter", "Salt", "Water"],
       "recipe": "Boil beef until soft. \nSaute onion in butter. \nAdd rice and stir. \nPour in beef broth and meat. \nSimmer until rice is done. Done!"
@@ -607,7 +608,7 @@ body {
       "id": 47,
       "origin": "Mardin",
       "title": "Irok",
-      "image": "food/47.jpeg",
+      "image": "food/47.jpg",
       "description": "A deep-fried bulgur shell stuffed with spiced meat, from Mardin.",
       "ingredients": ["Bulgur", "Beef", "Onion", "Spices", "Salt", "Sunflower oil"],
       "recipe": "Prepare shell from bulgur and water. \nStuff with meat and spices. \nShape and seal. \nDeep fry until golden. \nServe warm. Done!"
@@ -616,7 +617,7 @@ body {
       "id": 33,
       "origin": "Mersin",
       "title": "Tantuni",
-      "image": "food/33.jpeg",
+      "image": "food/33.jpg",
       "description": "Sauteed beef wrap with spices and vegetables, famous in Mersin.",
       "ingredients": ["Beef", "Onion", "Tomato", "Parsley", "Spices", "Bread"],
       "recipe": "Saute finely chopped beef in spices. \nWarm bread. \nFill with beef, onion, tomato, and parsley. \nWrap and serve hot. Done!"
@@ -661,7 +662,7 @@ body {
       "id": 52,
       "origin": "Ordu",
       "title": "Misir Ekmegi",
-      "image": "food/52.jpeg",
+      "image": "food/52.jpg",
       "description": "Cornbread made with cornmeal and yogurt, traditional in Ordu.",
       "ingredients": ["Cornmeal", "Yogurt", "Butter", "Salt", "Water"],
       "recipe": "Mix all ingredients. \nPour into greased pan. \nBake until golden. \nCool slightly and slice. \nServe warm. Done!"
@@ -697,7 +698,7 @@ body {
       "id": 55,
       "origin": "Samsun",
       "title": "Bafra Pidesi",
-      "image": "food/55.jpeg",
+      "image": "food/55.jpg",
       "description": "Boat-shaped pastry filled with minced meat, famous in Samsun.",
       "ingredients": ["Flour", "Beef", "Onion", "Tomato paste", "Salt", "Spices"],
       "recipe": "Prepare dough and shape like a boat. \nFill with seasoned beef mix. \nBake until crispy. \nServe hot. Done!"
@@ -742,7 +743,7 @@ body {
       "id": 73,
       "origin": "Sirnak",
       "title": "Serbidev",
-      "image": "food/73.jpeg",
+      "image": "food/73.jpg",
       "description": "Lamb cooked in its own fat with spices, traditional in Sirnak.",
       "ingredients": ["Lamb", "Salt", "Spices"],
       "recipe": "Cut lamb into small pieces. \nPlace in pot with salt and spices. \nCook slowly in its own fat. \nServe hot. Done!"
@@ -864,10 +865,7 @@ body {
     "ingredients": ["Flour", "Eggs", "Salt", "Yogurt", "Garlic", "Butter"],
     "recipe": "Prepare dough with flour, eggs, and salt. \nRoll and cut into squares. \nBoil in salted water until tender. \nTop with garlic yogurt. \nDrizzle with melted butter. Done!"
   }
-  ];
-
- 
- // Static dinners with chosen recipe IDs
+  ];  // Menus preprepared
   const dinners = [
   {
     title: "Southeastern Anatolia Feast",
@@ -951,7 +949,7 @@ body {
   }
 ];
 
-
+//Find ID
   function findRecipeById(id) {
     return recipes.find(r => r.id === id);
   }
@@ -960,8 +958,9 @@ body {
     const card = document.createElement('div');
     card.className = 'recipe-card';
 
-    card.innerHTML = `
-      <img src="${recipe.image}" alt="${recipe.title}" />
+    //Creating html elements dynamically
+    card.innerHTML = ` 
+      <img src="${recipe.image}" alt="${recipe.title}" /> 
       <div class="recipe-info">
         <div class="recipe-title">${recipe.title}</div>
         <div class="recipe-origin">${recipe.origin}</div>

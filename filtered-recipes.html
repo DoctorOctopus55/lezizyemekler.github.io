@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta settings for character encoding and responsive layout -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Filtered Recipes</title>
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS framework -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
   <style>
+    /* General body layout */
     html, body {
       height: 100%;
       margin: 0;
@@ -20,6 +22,7 @@
       color: #333;
     }
 
+    /* Main content area */
     main {
       flex: 1;
       padding: 2rem;
@@ -29,8 +32,10 @@
 
     h1 {
       margin-bottom: 1rem;
+      text-align: center;
     }
 
+    /* Container for filtered recipe cards */
     #favorite-recipes {
       width: 100%;
       display: flex;
@@ -41,6 +46,7 @@
       flex-grow: 1;
     }
 
+    /* Recipe card styling */
     .recipe-card {
       background: white;
       border-radius: 8px;
@@ -56,11 +62,13 @@
       cursor: pointer;
     }
 
+    /* Card hover effect */
     .recipe-card:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
+    /* Image container */
     .recipe-image {
       width: 100%;
       height: 180px;
@@ -73,7 +81,7 @@
 
     .recipe-title {
       font-size: 1.25rem;
-      margin: 0 0 0.5rem 0;
+      margin-bottom: 0.5rem;
     }
 
     .recipe-description {
@@ -88,6 +96,7 @@
       margin-top: 1rem;
     }
 
+    /* Button styles */
     .favorite-btn, .show-recipe-btn {
       flex: 1;
       background-color: #ff2600;
@@ -101,19 +110,23 @@
       transition: background-color 0.3s ease;
     }
 
+    /* Favorited button variant */
     .favorite-btn.favorited {
       background-color: gold;
       color: black;
     }
 
+    /* Hover effect for Show Recipe button */
     .show-recipe-btn:hover {
       background-color: #cc1f00;
     }
 
+    /* Modal header styling */
     .modal-header {
       position: relative;
     }
 
+    /* Close button positioning */
     .btn-close {
       position: absolute;
       right: 1rem;
@@ -123,6 +136,7 @@
       font-size: 1.2rem;
     }
 
+    /* Footer section */
     footer {
       background-color: #ff2600;
       color: white;
@@ -132,6 +146,7 @@
       font-size: 0.95rem;
     }
 
+    /* Responsive tweaks for mobile */
     @media (max-width: 600px) {
       .recipe-card {
         transform: scale(0.85);
@@ -149,11 +164,12 @@
 <body>
 
   <main>
-    <h1 style="text-align: center;">Filtered Recipes</h1>
+    <h1>Filtered Recipes</h1>
+    <!-- Filtered recipe cards will be rendered here -->
     <div id="favorite-recipes"></div>
   </main>
 
-  <!-- Modal -->
+  <!-- Modal structure for showing recipe details -->
   <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -166,11 +182,12 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
+  <!-- Bootstrap JS (including Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-      const recipes = [
+    // Recipe data
+    const recipes = [
     {
       "id": 1,
       "origin": "Adana",
@@ -238,7 +255,7 @@
       "id": 8,
       "origin": "Artvin",
       "title": "Mahluta Corbasi",
-      "image": "food/08.jpeg",
+      "image": "food/08.jpg",
       "description": "A hearty lentil-based soup popular in the Black Sea region.",
       "ingredients": ["Bulgur", "Onion", "Olive oil", "Carrots", "Salt", "Spices"],
       "recipe": "Saute chopped onion and carrots in olive oil. \nAdd bulgur, water, salt, and spices. \nSimmer until ingredients soften. \nMash lightly or blend for smooth texture. \nServe hot with lemon juice if desired. Done!"
@@ -355,7 +372,7 @@
       "id": 18,
       "origin": "Cankiri",
       "title": "Cankiri Yogurtlu Et",
-      "image": "food/18.jpeg",
+      "image": "food/18.jpg",
       "description": "Boiled meat topped with yogurt and butter sauce, a classic from Cankiri.",
       "ingredients": ["Beef", "Yogurt", "Garlic", "Butter", "Salt"],
       "recipe": "Boil beef until tender. \nMix yogurt with crushed garlic and salt. \nPlace meat on plate. \nTop with garlic yogurt. \nDrizzle with melted butter. Done!"
@@ -391,7 +408,7 @@
       "id": 81,
       "origin": "Duzce",
       "title": "Melenguccegi Tatlisi",
-      "image": "food/81.jpeg",
+      "image": "food/81.jpg",
       "description": "A local dessert made with dough, walnuts, and syrup.",
       "ingredients": ["Flour", "Walnuts", "Butter", "Sugar", "Water"],
       "recipe": "Prepare dough and roll thin. \nFill with ground walnuts and fold. \nBake until golden. \nPour hot syrup over. \nCool and serve. Done!"
@@ -436,7 +453,7 @@
       "id": 26,
       "origin": "Eskisehir",
       "title": "Cigborek",
-      "image": "food/26.jpeg",
+      "image": "food/26.jpg",
       "description": "Deep-fried pastries with a raw meat filling.",
       "ingredients": ["Flour", "Beef", "Onion", "Salt", "Black pepper", "Water"],
       "recipe": "Prepare dough with flour and water. \nFill with raw beef and onion mix. \nSeal and deep-fry until golden. \nServe hot. Done!"
@@ -490,7 +507,7 @@
       "id": 32,
       "origin": "Isparta",
       "title": "Kabune",
-      "image": "food/32.jpeg",
+      "image": "food/32.jpg",
       "description": "A pilaf with beef and onion, a well-known Isparta dish.",
       "ingredients": ["Beef", "Onion", "Rice", "Butter", "Salt", "Water"],
       "recipe": "Boil beef until soft. \nSaute onion in butter. \nAdd rice and stir. \nPour in beef broth and meat. \nSimmer until rice is done. Done!"
@@ -652,7 +669,7 @@
       "id": 47,
       "origin": "Mardin",
       "title": "Irok",
-      "image": "food/47.jpeg",
+      "image": "food/47.jpg",
       "description": "A deep-fried bulgur shell stuffed with spiced meat, from Mardin.",
       "ingredients": ["Bulgur", "Beef", "Onion", "Spices", "Salt", "Sunflower oil"],
       "recipe": "Prepare shell from bulgur and water. \nStuff with meat and spices. \nShape and seal. \nDeep fry until golden. \nServe warm. Done!"
@@ -661,7 +678,7 @@
       "id": 33,
       "origin": "Mersin",
       "title": "Tantuni",
-      "image": "food/33.jpeg",
+      "image": "food/33.jpg",
       "description": "Sauteed beef wrap with spices and vegetables, famous in Mersin.",
       "ingredients": ["Beef", "Onion", "Tomato", "Parsley", "Spices", "Bread"],
       "recipe": "Saute finely chopped beef in spices. \nWarm bread. \nFill with beef, onion, tomato, and parsley. \nWrap and serve hot. Done!"
@@ -706,7 +723,7 @@
       "id": 52,
       "origin": "Ordu",
       "title": "Misir Ekmegi",
-      "image": "food/52.jpeg",
+      "image": "food/52.jpg",
       "description": "Cornbread made with cornmeal and yogurt, traditional in Ordu.",
       "ingredients": ["Cornmeal", "Yogurt", "Butter", "Salt", "Water"],
       "recipe": "Mix all ingredients. \nPour into greased pan. \nBake until golden. \nCool slightly and slice. \nServe warm. Done!"
@@ -742,7 +759,7 @@
       "id": 55,
       "origin": "Samsun",
       "title": "Bafra Pidesi",
-      "image": "food/55.jpeg",
+      "image": "food/55.jpg",
       "description": "Boat-shaped pastry filled with minced meat, famous in Samsun.",
       "ingredients": ["Flour", "Beef", "Onion", "Tomato paste", "Salt", "Spices"],
       "recipe": "Prepare dough and shape like a boat. \nFill with seasoned beef mix. \nBake until crispy. \nServe hot. Done!"
@@ -787,7 +804,7 @@
       "id": 73,
       "origin": "Sirnak",
       "title": "Serbidev",
-      "image": "food/73.jpeg",
+      "image": "food/73.jpg",
       "description": "Lamb cooked in its own fat with spices, traditional in Sirnak.",
       "ingredients": ["Lamb", "Salt", "Spices"],
       "recipe": "Cut lamb into small pieces. \nPlace in pot with salt and spices. \nCook slowly in its own fat. \nServe hot. Done!"
@@ -909,20 +926,27 @@
     "ingredients": ["Flour", "Eggs", "Salt", "Yogurt", "Garlic", "Butter"],
     "recipe": "Prepare dough with flour, eggs, and salt. \nRoll and cut into squares. \nBoil in salted water until tender. \nTop with garlic yogurt. \nDrizzle with melted butter. Done!"
   }
-  ];
-
+  ]; 
+    // Load filtered recipe IDs from localStorage
     const filteredIds = JSON.parse(localStorage.getItem('filteredRecipeIds')) || [];
+
+    // Container element to render cards
     const container = document.getElementById('favorite-recipes');
+
+    // Favorites list stored locally
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
+    // Save favorites back to localStorage
     function saveFavorites() {
       localStorage.setItem('favorites', JSON.stringify(favorites));
     }
 
+    // Check if a recipe is marked as favorite
     function isFavorited(id) {
       return favorites.includes(id);
     }
 
+    // Toggle recipe favorite status
     function toggleFavorite(id, button) {
       if (isFavorited(id)) {
         favorites = favorites.filter(favId => favId !== id);
@@ -936,20 +960,26 @@
       saveFavorites();
     }
 
+    // Setup for Bootstrap modal
     const recipeModal = new bootstrap.Modal(document.getElementById('recipeModal'));
     const modalTitle = document.getElementById('recipeModalLabel');
     const modalBody = document.getElementById('modalRecipeText');
 
+    // Show recipe content in modal
     function showRecipeModal(recipe) {
       modalTitle.textContent = recipe.title;
       modalBody.textContent = recipe.recipe;
       recipeModal.show();
     }
 
+    // If no matching recipes, show empty message
     if (filteredIds.length === 0) {
       container.innerHTML = '<p>No recipes found for the selected ingredients.</p>';
     } else {
+      // Filter the full recipe list by selected IDs
       const filteredRecipes = recipes.filter(r => filteredIds.includes(r.id));
+
+      // Create and append card for each filtered recipe
       filteredRecipes.forEach(recipe => {
         const card = document.createElement('div');
         card.className = 'recipe-card';
@@ -1002,8 +1032,11 @@
       });
     }
   </script>
-</body>
-  <footer style="background-color:#ff2600; color:white; text-align:center; padding:1rem; margin-top:2rem;">
-    © 2025 | 81 City 81 Flavours -  | Prepared by: Berat Eker - Toprak Ateş - Ali Can Kumru
+
+  <!-- Footer with authorship info -->
+  <footer>
+    © 2025 | 81 City 81 Flavours | Prepared by: Berat Eker - Toprak Ateş - Ali Can Kumru
   </footer>
+
+</body>
 </html>

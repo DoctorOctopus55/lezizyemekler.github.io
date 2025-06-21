@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Page metadata and title -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shopping</title>
+
   <style>
+    /* Global layout styles */
     html, body {
-        height: 100%;
-        margin-left: 10;
-        margin-top: 0;
-        margin-bottom: 0;
-        margin-right: 10;
-        padding: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #fff8f0;
-        color: #333;
-        display: flex;
-        flex-direction: column;
+      height: 100%;
+      margin: 0 10px;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
     }
 
     body {
-        flex: 1;
+      flex: 1;
     }
 
     h1 {
@@ -30,12 +30,14 @@
       text-align: center;
     }
 
+    /* Container for all ingredients and links */
     .shopping-recipes {
-      flex-grow: 1;            /* Kalan alanı kaplasın */
+      flex-grow: 1;
       overflow-y: auto;
       padding-right: 1rem;
     }
 
+    /* Ingredient name title style */
     .ingredient-name {
       background-color: #f0f0f0;
       border-left: 5px solid #ff7f50;
@@ -47,6 +49,7 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
+    /* Unordered list for links under each ingredient */
     .links {
       list-style-type: none;
       padding-left: 25px;
@@ -58,6 +61,7 @@
       margin-bottom: 6px;
     }
 
+    /* Style for each e-market link */
     .eachlink {
       text-decoration: none;
       color: #2980b9;
@@ -70,38 +74,40 @@
       color: #1f4e79;
     }
 
-    /* Scrollbar styling */
+    /* Scrollbar customization */
     .shopping-recipes::-webkit-scrollbar {
       width: 6px;
     }
+
     .shopping-recipes::-webkit-scrollbar-thumb {
       background-color: #ccc;
       border-radius: 3px;
       cursor: pointer;
     }
 
+    /* Footer styling */
     footer {
-    background-color: #ff2600;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: auto;       /* Burayı 2rem'den auto yap */
-    flex-shrink: 0;
-    max-width: 100%;            /* Genişliği tam yap */
-           /* En alta yapıştır */
+      background-color: #ff2600;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+      flex-shrink: 0;
+      max-width: 100%;
     }
   </style>
 </head>
 <body>
+     <!-- Page heading -->
+    <h1>Shopping Lists</h1>
 
-  <h1>Shopping Lists</h1>
-
+     <!-- Scrollable section with ingredients and links -->
     <div class="shopping-recipes">
         <div class="ingredient-name">🥚 Eggs</div>
         <ul class="links">
             <li><a href="https://www.a101.com.tr/kapida/search?query=yumurta" class="eachlink">A101</a></li>
             <li><a href="https://www.migros.com.tr/arama?q=yumurta" class="eachlink">Migros</a></li>
-            <li><a href="https://www.carrefoursa.com/search/?text=yumurta" class="eachlink">CarrefourSa</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=yumurta" class="eachlink">CarrefourSA</a></li>
         </ul>
         <div class="ingredient-name">🥛 Milk</div>
         <ul class="links">
@@ -291,7 +297,7 @@
         </ul>
         <div class="ingredient-name">🐑 Lamb</div>
         <ul class="links">
-            <li><a href="https://www.a101.com.tr/kapida/search?query=koyun%20eti" class="eachlink">Li</a></li>
+            <li><a href="https://www.a101.com.tr/kapida/search?query=koyun%20eti" class="eachlink">A101</a></li>
             <li><a href="https://www.migros.com.tr/arama?q=koyun%20eti" class="eachlink">Migros</a></li>
             <li><a href="https://www.carrefoursa.com/search/?text=koyun+eti" class="eachlink">CarrefourSA</a></li>
         </ul>
