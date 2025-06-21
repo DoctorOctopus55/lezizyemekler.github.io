@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+      padding: 2rem;
+      max-width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: #2c3e50;
+    }
+
+    .shopping-recipes {
+      overflow-y: auto;
+      padding-right: 1rem;
+    }
+
+    .ingredient-name {
+      background-color: #f0f0f0;
+      border-left: 5px solid #ff7f50;
+      padding: 10px 15px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .links {
+      list-style-type: none;
+      padding-left: 25px;
+      margin-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    .links li {
+      margin-bottom: 6px;
+    }
+
+    .eachlink {
+      text-decoration: none;
+      color: #2980b9;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .eachlink:hover {
+      text-decoration: underline;
+      color: #1f4e79;
+    }
+
+    /* Scrollbar styling */
+    .shopping-recipes::-webkit-scrollbar {
+      width: 6px;
+    }
+    .shopping-recipes::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+    <h1>Shopping Lists</h1>
+    <div class="shopping-recipes">
+        <div class="ingredient-name">🥚 Eggs</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=yumurta" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=yumurta" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=yumurta" class="eachlink">CarrefourSa</a></li>
+        </ul>
+        <div class="ingredient-name">🥛 Milk</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=süt" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=süt" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=süt" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🌾 Flour</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=un" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=un" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=un" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🍬 Sugar</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=şeker" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=şeker" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=şeker" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🧈 Butter</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=tereyağ" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=tereyağ" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=tereyağ" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🍅 Tomato</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=domates" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=domates" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=domates" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🧀 Cheese</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=peynir" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=peynir" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=peynir" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🍗 Chicken</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=tavuk" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=tavuk" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=tavuk" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🫘 Beans</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=bezelye" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=bezelye" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=bezelye" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🍚 Rice</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=pirinç" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=pirinç" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=pirinç" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🍝 Pasta</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=makarna" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=makarna" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=makarna" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🍞 Bread</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=ekmek" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=ekmek" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=ekmek" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🥔 Potatoes</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=patates" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=patates" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=patates" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🌾 Bulgur</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=bulgur" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=bulgur" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=bulgur" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🌻 Sunflower Oil</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=ayçiçek" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=ayçiçek" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=ayçiçek" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">Olive Oil</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=zeytin%20yağ" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=zeytin%20yağ" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=zeytin+yağ" class="eachlink">CarefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🧅 Onion</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=soğan" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=soğan" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=soğan" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🧄 Garlic</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=sarımsak" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=sarımsak" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=sarımsak" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🥕 Carrot</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=havuç" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=havuç" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=havuç" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🫑 Green Pepper</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=yeşil%20biber" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=yeşil%20biber" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=yeşil+biber" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🧂 Salt</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=tuz" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=tuz" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=tuz" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">💧 Water</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=su" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=su" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=su" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🥩 Beef</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=et" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=et" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=et" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🥣 Yogurt</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=yoğurt" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=yoğurt" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=yoğurt" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🌶️ Red Pepper</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=kırmızı%20biber" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=kırmızı%20biber" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=kırmızı+biber" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">⚫ Black Pepper</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=karabiber" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=karabiber" class="eachlink">Migros</a></li>
+            <li><a href="karabiber" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🧂 Spices</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=baharatlar" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=baharatlar" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=tuz" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🍋 Lemon Juice</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=limon" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=limon" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=limon" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">Parsley</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=maydanoz" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=maydanoz" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=maydanoz" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🌰 Walnuts</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=ceviz" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=ceviz" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=ceviz" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🥫 Tomato Paste</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=domates%20püresi" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=domates%20püresi" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=domates+püresi" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🧴 Pepper Paste</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=biber%20püresi" class="eachlink">A101</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=biber%20püresi" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=biber+püresi" class="eachlink">CarrefourSA</a></li>
+        </ul>
+        <div class="ingredient-name">🐑 Lamb</div>
+        <ul class="links">
+            <li><a href="https://www.a101.com.tr/kapida/search?query=koyun%20eti" class="eachlink">Li</a></li>
+            <li><a href="https://www.migros.com.tr/arama?q=koyun%20eti" class="eachlink">Migros</a></li>
+            <li><a href="https://www.carrefoursa.com/search/?text=koyun+eti" class="eachlink">CarrefourSA</a></li>
+        </ul>
+</body>
+</html>

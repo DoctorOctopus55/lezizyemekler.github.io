@@ -99,6 +99,7 @@ section {
   z-index: 1; /* Üst katmanda */
   border-radius: 8px; /* Köşeler yuvarlatılmış */
   cursor: pointer;
+  flex-direction: column;
 }
 
 #shopping-section::before {
@@ -354,6 +355,7 @@ li {
   padding: 1rem 1.2rem; 
   margin-top: 1rem; /* Üstten boşluk */
   cursor: pointer;
+  flex-direction: column;
 }
 
 #city-flavours-section::before {

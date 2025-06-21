@@ -1,0 +1,126 @@
+/* Tüm sayfa için temel ayarlar */
+body {
+  margin: 0; /* Kenar boşluklarını kaldırır */
+  padding: 0; /* İç boşlukları kaldırır */
+  background-color: #fff8f0; /* Sayfa arka plan rengi */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Yazı tipi ailesi */
+}
+
+/* Sayfanın üst kısmındaki başlık alanı */
+header {
+  background-image: url('food/harita.png'); /* Arka plan görseli */
+  background-size: cover; /* Görselin alanı tamamen kaplamasını sağlar */
+  background-position: center; /* Görseli ortalar */
+  color: white; /* Yazı rengi beyaz */
+  text-align: center; /* Yazıları ortalar */
+  padding: 0.4rem 0.3rem; /* Üst-alt ve sağ-sol iç boşluk */
+  font-size: 1.3rem; /* Başlık yazı boyutu */
+  font-weight: bold; /* Kalın yazı */
+  position: relative; /* Pseudo-element için konumlandırma */
+  z-index: 1; /* Katman önceliği */
+}
+
+/* Başlık arka planına yarı saydam karartı efekti */
+header::before {
+  content: ''; /* Boş içerik oluşturur */
+  position: absolute; /* Mutlak konumlandırma */
+  inset: 0; /* Tüm kenarlardan sıfır mesafe */
+  background-color: rgba(0, 0, 0, 0.4); /* Yarı saydam siyah katman */
+  z-index: -1; /* Asıl içeriğin arkasında görünür */
+}
+
+/* Butonları saran ana grid kapsayıcı */
+main.city-container {
+  max-width: 1400px; /* En fazla genişlik */
+  margin: auto; /* Ortalar */
+  padding: 2rem; /* İç boşluk */
+  display: grid; /* Grid düzeni kullanılır */
+  grid-template-columns: repeat(4, 1fr); /* 4 eşit sütun */
+  gap: 2rem; /* Sütun ve satırlar arası boşluk */
+}
+
+/* City-group varsa, içeriği normalmiş gibi gösterir */
+.city-group {
+  display: contents; /* Gruplama yerine içerik gibi davranır */
+}
+
+/* Şehirleri temsil eden butonlar */
+.city-button {
+  background-image: url('images/flavours.jpeg'); /* Arka plan görseli */
+  background-size: cover; /* Görselin butonu tamamen kaplaması */
+  background-position: center; /* Görsel ortalanır */
+  color: white; /* Yazı rengi beyaz */
+  position: relative; 
+  z-index: 1; /* İçeriği üstte tutmak için */
+  border: none; /* Kenarlık yok */
+  border-radius: 12px; /* Köşeleri yuvarlat */
+  min-height: 120px; /* Minimum yükseklik */
+  font-size: 1.4rem; /* Yazı boyutu */
+  font-weight: bold; /* Yazı kalınlığı */
+  text-align: left; /* Yazı sola hizalanır */
+  padding: 1.2rem 1.5rem; /* İç boşluk */
+  cursor: pointer; /* Üzerine gelindiğinde imleç değişir */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Geçiş efekti */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Gölgelendirme efekti */
+  width: 100%; /* Genişliği %100 */
+  display: flex; /* Flex düzeni */
+  align-items: flex-end; /* Yazıyı alt hizaya yerleştirir */
+}
+
+/* Buton arka planına karartı efekti */
+.city-button::before {
+  content: ''; /* Boş içerik */
+  position: absolute; 
+  inset: 0; /* Tüm kenarlardan sıfır */
+  background-color: rgba(0, 0, 0, 0.35); /* Yarı saydam siyah katman */
+  border-radius: 12px; /* Yuvarlatılmış köşeler */
+  z-index: -1; /* Arka planda kalması için */
+}
+
+/* Buton üzerine gelindiğinde efekt */
+.city-button:hover {
+  transform: scale(1.05); /* Butonu büyüt */
+  box-shadow: 0 0 15px rgba(255, 38, 0, 0.6); /* Işıltı efekti */
+}
+
+/* Mobil cihazlar için özel düzenlemeler */
+@media (max-width: 768px) {
+  main.city-container {
+    display: flex; /* Grid yerine flex düzeni */
+    flex-direction: column; /* Dikey sıralama */
+    padding: 1rem; /* Daha küçük iç boşluk */
+  }
+
+  .city-group {
+    min-width: 100%; /* Genişlik tam ekran */
+    gap: 1rem; /* Butonlar arası boşluk */
+  }
+
+  .city-button {
+    min-height: 100px; /* Daha küçük yükseklik */
+    font-size: 1.2rem; /* Daha küçük yazı */
+  }
+
+  header {
+    font-size: 2rem; /* Daha büyük başlık yazısı */
+    padding: 1.5rem 1rem; /* Daha büyük boşluk */
+  }
+}
+
+/* Tarif detayları için stil */
+#recipe-display img {
+  max-width: 100%; /* Görsel genişliği sınırlanır */
+  border-radius: 12px; /* Köşeleri yuvarlat */
+  margin-bottom: 1rem; /* Alt boşluk */
+}
+
+#recipe-display pre {
+  white-space: pre-wrap; /* Satır kayması sağlanır */
+  font-family: inherit; /* Sayfa yazı tipi kullanılır */
+  font-size: 1rem; /* Yazı boyutu */
+  line-height: 1.4; /* Satır aralığı */
+  background: #f7f7f7; /* Arka plan rengi */
+  padding: 0.75rem 1rem; /* İç boşluk */
+  border-radius: 8px; /* Köşeleri yuvarlat */
+  margin-top: 0.5rem; /* Üst boşluk */
+}

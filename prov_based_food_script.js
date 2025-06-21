@@ -1,5 +1,5 @@
-// Recipes with ingredients
-const recipes = [
+// Tarif verileri ali can doldur
+const yemekler = [
   {
     "id": 1,
     "origin": "Adana",
@@ -740,66 +740,86 @@ const recipes = [
 }
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
-  const openBtn = document.getElementById('open-ingredient-modal');
-  const modal = document.getElementById('ingredient-modal');
-  const closeBtn = document.getElementById('close-modal');
-  const confirmBtn = document.getElementById('confirm-ingredients');
-  const ingredientItems = document.querySelectorAll('#ingredient-list li');
+// HTML elemanları
+const cityContainer = document.querySelector('main.city-container');
+const recipeDisplay = document.getElementById('recipe-display');
 
-  let selectedIngredients = [];
+// Türkiye illeri (sıra ve isimler)
+const cityList = [
+  "Adana","Adiyaman","Afyonkarahisar","Agri","Amasya","Ankara","Antalya","Artvin","Aydin","Balikesir",
+  "Bilecik","Bingol","Bitlis","Bolu","Burdur","Bursa","Canakkale","Cankiri","Corum","Denizli",
+  "Diyarbakir","Edirne","Elazig","Erzincan","Erzurum","Eskisehir","Gaziantep","Giresun","Gumushane","Hakkari",
+  "Hatay","Isparta","Mersin","Istanbul","Izmir","Kars","Kastamonu","Kayseri","Kirklareli","Kirsehir",
+  "Kocaeli","Konya","Kutahya","Malatya","Manisa","Kahramanmaras","Mardin","Mugla","Mus","Nevsehir",
+  "Nigde","Ordu","Rize","Sakarya","Samsun","Siirt","Sinop","Sivas","Tekirdag","Tokat",
+  "Trabzon","Tunceli","Sanliurfa","Usak","Van","Yozgat","Zonguldak","Aksaray","Bayburt","Karaman",
+  "Kirikkale","Batman","Sirnak","Bartin","Ardahan","Igdir","Yalova","Karabuk","Kilis","Osmaniye","Duzce"
+];
 
-  // Open modal on button click only
-  openBtn.addEventListener('click', () => {
-    modal.classList.remove('hidden');
-  });
+// Diziyi belirtilen büyüklükte parçalara böler
+function chunkArray(arr, size) {
+  const result = []; // Bölünmüş parçaları tutacak dizi
+  for(let i = 0; i < arr.length; i += size) {
+    // arr dizisinden i'den i+size'a kadar bir parça al ve result'a ekle
+    result.push(arr.slice(i, i + size));
+  }
+  return result; // Bölünmüş dizi parçalarını döndür
+}
 
-  // Close modal on cancel button click
-  closeBtn.addEventListener('click', () => {
-    modal.classList.add('hidden');
-  });
+// Şehir butonlarını oluşturur ve sayfaya ekler
+function createCityButtons() {
+  const groups = chunkArray(cityList, 20); // cityList dizisini 20'şer elemanlık gruplara ayır
+  groups.forEach(group => {
+    const groupDiv = document.createElement('div'); // Her grup için bir div oluştur
+    groupDiv.classList.add('city-group'); // div'e class ekle (grid yapısı için)
+    group.forEach(city => {
+      const btn = document.createElement('button'); // Buton oluştur
+      btn.classList.add('city-button'); // Butona stil için class ekle
+      const index = cityList.indexOf(city) + 1; // Şehrin listedeki sıra numarası (1 bazlı)
+      const paddedIndex = index.toString().padStart(2, '0'); // 01, 02 gibi iki haneli plaka kodu yap
+      btn.textContent = paddedIndex + ' ' + city; // Buton yazısı: plaka + şehir adı
+      btn.dataset.city = city; // Butona veri-özellik olarak şehir adı ekle
 
-  // Close modal if clicking outside modal content area
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.add('hidden');
-    }
-  });
+      // Butonun arka planına şehir plaka numarasına göre görsel ekle
+      btn.style.backgroundImage = `url('food/${paddedIndex}.jpg')`;
+      btn.style.backgroundSize = 'cover'; // Görsel butonu kaplasın
+      btn.style.backgroundPosition = 'center'; // Görsel ortalı olsun
+      btn.style.color = '#fff'; // Yazı rengini beyaz yap, okunabilirlik için
 
-  // Toggle ingredient selection on click
-  ingredientItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const ing = item.getAttribute('data-ingredient');
-      if (selectedIngredients.includes(ing)) {
-        selectedIngredients = selectedIngredients.filter(i => i !== ing);
-        item.classList.remove('selected');
-      } else {
-        selectedIngredients.push(ing);
-        item.classList.add('selected');
-      }
+      // Butona tıklanınca o şehrin tarifini gösteren fonksiyonu çağır
+      btn.addEventListener('click', () => openCityRecipe(city));
+      groupDiv.appendChild(btn); // Butonu gruba ekle
     });
+    cityContainer.appendChild(groupDiv); // Grubu ana konteynıra ekle
   });
+}
 
-    // Confirm selection and close modal
-    confirmBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-        console.log('Selected ingredients:', selectedIngredients);
+// Seçilen şehir adına göre yemek tarifini gösterir
+function openCityRecipe(cityName) {
+  // cityName'e göre yemekler dizisinde arama yap
+  const yemek = yemekler.find(y => y.origin.toLowerCase() === cityName.toLowerCase());
+  if (yemek) {
+    // Yemek bulunursa detayları HTML olarak göster
+    recipeDisplay.innerHTML = `
+      <h2>${yemek.title} (${yemek.origin})</h2>
+      <img src="${yemek.image}" alt="${yemek.title}" />
+      <p><em>${yemek.description}</em></p>
+      <strong>Ingredients:</strong> ${yemek.ingredients.join(', ')}<br/>
+      <strong>Recipe:</strong><pre>${yemek.recipe}</pre>
+    `;
+    // Tarif gösterildikten sonra sayfayı tarif alanının altına kaydır (smooth animasyonla)
+    recipeDisplay.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  } else {
+    // Tarif bulunamazsa uyarı mesajı göster
+    recipeDisplay.innerHTML = `<p>Bu ile ait yemek bulunamadı.</p>`;
+  }
+}
 
-        // Filter recipes that contain at least one selected ingredient
-        const matchedRecipes = recipes.filter(recipe => 
-            recipe.ingredients.some(ing => selectedIngredients.includes(ing))
-        );
+// Sayfa tamamen yüklendiğinde butonları oluştur
+window.addEventListener('DOMContentLoaded', () => {
+  createCityButtons();
+});
 
-        if (matchedRecipes.length === 0) {
-            alert('No recipes found with selected ingredients.');
-            return;
-        }
-
-        // Save matched recipe IDs to localStorage
-        const matchedIds = matchedRecipes.map(r => r.id);
-        localStorage.setItem('filteredRecipeIds', JSON.stringify(matchedIds));
-
-        // Redirect to filtered recipes page
-        window.location.href = '/filtered-recipes.html';
-        });
+recipes.forEach(recipe => {
+  console.log(recipe.origin+"\n");
 });

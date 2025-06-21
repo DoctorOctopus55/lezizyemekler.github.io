@@ -1,133 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Favorite Recipes with Bootstrap Modal</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ideal Dinner Recipes</title>
 
-  <!-- Bootstrap CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<!--Bootstrap-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fff8f0;
-      color: #333;
-      padding: 2rem;
-      max-width: 100%;
-      margin: auto;
-      height: 90vh;
-      display: flex;
-      flex-direction: column;
-    }
-    h1 {
-      margin-bottom: 1rem;
-    }
-    #favorite-recipes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      overflow-y: auto;
-      flex-grow: 1;
-      padding-right: 0.5rem;
-    }
-    .recipe-card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 1rem;
-      flex: 0 0 280px;
-      height: 360px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      transition: transform 0.3s ease;
-    }
-    .recipe-card:hover {
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff8f0;
+    color: #333;
+    max-width: 900px;
+    margin: auto;
+    padding: 1rem;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .dinner {
+    border: 2px solid #f1d7ce;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #fff2e8;
+  }
+  .dinner-title {
+    color: #b33a0d;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .recipes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+  .recipe-card {
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+    width: calc(33% - 1rem);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  .recipe-card:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    .recipe-image {
+  }
+  .recipe-card img {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    height: 140px;
+    object-fit: cover;
+  }
+  .recipe-info {
+    padding: 0.75rem;
+    flex-grow: 1;
+  }
+  .recipe-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .recipe-origin {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  .recipe-desc {
+    font-size: 0.95rem;
+    color: #444;
+  }
+  .recipe-full {
+    padding: 0.75rem;
+    background: #f9e9db;
+    font-size: 0.9rem;
+    white-space: pre-line;
+    border-top: 1px solid black;
+    display: none;
+  }
+  @media (max-width: 700px) {
+    .recipe-card {
       width: 100%;
-      height: 180px;
-      background-color: #ddd;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      background-size: cover;
-      background-position: center;
     }
-    .recipe-title {
-      font-size: 1.25rem;
-      margin: 0 0 0.5rem 0;
-    }
-    .recipe-description {
-      flex-grow: 1;
-      font-size: 1rem;
-      color: #555;
-    }
-    .buttons {
-      margin-top: 1rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-    button {
-      background-color: #ff2600;
-      border: none;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-      flex: 1;
-    }
-    button.favorited {
-      background-color: gold;
-      color: black;
-    }
-
-    .modal-header {
-      position: relative;
-    }
-
-    .btn-close {
-      position: absolute;
-      right: 1rem; /* position on the left side */
-      top: 50%;
-      transform: translateY(-50%);
-      width: auto;  /* shrink width */
-      height: auto; /* shrink height */
-      padding: 0.25rem 0.5rem; /* reduce clickable area */
-      font-size: 1.25rem; /* adjust size if needed */
-      border-radius: 0;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <h1>Favorite Recipes</h1>
-  <div id="favorite-recipes"></div>
 
-  <!-- Bootstrap Modal -->
-  <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-danger text-white">
-          <h5 class="modal-title" id="recipeModalLabel">Activate Order</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="modalRecipeText" style="white-space: pre-wrap;"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<h1>Ideal Dinner Recipes</h1>
 
-  <!-- Bootstrap JS CDN + Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<div id="dinners-container"></div>
 
-  <script>
-  const recipes = [
+<script>
+const recipes = [
     {
       "id": 1,
       "origin": "Adana",
@@ -868,84 +840,147 @@
   }
   ];
 
-  const container = document.getElementById('favorite-recipes');
-  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  // Static dinners with chosen recipe IDs
+  const dinners = [
+  {
+    title: "Southeastern Anatolia Feast",
+    recipeIds: [56, 63, 73, 76] // Perde Pilavi, Urfa Cig Kofte, Serbidev, Bozartma
+  },
+  {
+    title: "Black Sea Comfort",
+    recipeIds: [52, 53, 55, 57, 61] // Misir Ekmegi, Laz Boregi, Bafra Pidesi, Sinop Mantisi, Hamsi Pilavi
+  },
+  {
+    title: "Central Anatolia Classics",
+    recipeIds: [40, 51, 58, 66, 68] // Kirsehir Kesme Asi, Nigde Tava, Sivas Koftesi, Arabasi, Soganli Yahni
+  },
+  {
+    title: "Mediterranean Delights",
+    recipeIds: [60, 64, 67, 77] // Tokat Kebab, Tarhana Corbasi, Uveyik Pilavi, Yalova Corbasi
+  },
+  {
+    title: "Marmara Region Specials",
+    recipeIds: [54, 59, 75] // Islama Kofte, Tekirdag Koftesi, Hengel
+  },
+  {
+    title: "Eastern Anatolia Flavors",
+    recipeIds: [62, 65, 73, 76] // Gulik, Murtuga, Serbidev, Bozartma
+  },
+  {
+    title: "Black Sea Coastal Treats",
+    recipeIds: [53, 55, 57, 61] // Laz Boregi, Bafra Pidesi, Sinop Mantisi, Hamsi Pilavi
+  },
+  {
+    title: "Southeastern Meat Lovers",
+    recipeIds: [56, 73, 63] // Perde Pilavi, Serbidev, Urfa Cig Kofte
+  },
+  {
+    title: "Central Anatolian Comfort",
+    recipeIds: [58, 66, 68] // Sivas Koftesi, Arabasi, Soganli Yahni
+  },
+  {
+    title: "Marmara Grilled Favorites",
+    recipeIds: [54, 59] // Islama Kofte, Tekirdag Koftesi
+  },
+  {
+    title: "Eastern Anatolia Specialties",
+    recipeIds: [65, 76, 75] // Murtuga, Bozartma, Hengel
+  },
+  {
+    title: "Black Sea Village Feast",
+    recipeIds: [52, 57, 55] // Misir Ekmegi, Sinop Mantisi, Bafra Pidesi
+  },
+  {
+    title: "Southeastern Traditions",
+    recipeIds: [63, 56] // Urfa Cig Kofte, Perde Pilavi
+  },
+  {
+    title: "Central Anatolia Classic Soup & Stew",
+    recipeIds: [40, 51, 66] // Kirsehir Kesme Asi, Nigde Tava, Arabasi
+  },
+  {
+    title: "Mediterranean & Marmara Mix",
+    recipeIds: [60, 77, 54] // Tokat Kebab, Yalova Corbasi, Islama Kofte
+  },
+  {
+    title: "Eastern Anatolia Hearty Meals",
+    recipeIds: [62, 65, 73] // Gulik, Murtuga, Serbidev
+  },
+  {
+    title: "Black Sea Coastal Classics",
+    recipeIds: [53, 55, 61] // Laz Boregi, Bafra Pidesi, Hamsi Pilavi
+  },
+  {
+    title: "Southeastern Flavors Combo",
+    recipeIds: [73, 63, 76] // Serbidev, Urfa Cig Kofte, Bozartma
+  },
+  {
+    title: "Central Anatolia Hearty Combo",
+    recipeIds: [58, 51, 66] // Sivas Koftesi, Nigde Tava, Arabasi
+  },
+  {
+    title: "Marmara & Black Sea Mix",
+    recipeIds: [59, 54, 52] // Tekirdag Koftesi, Islama Kofte, Misir Ekmegi
+  }
+];
 
-  function saveFavorites() {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+
+  function findRecipeById(id) {
+    return recipes.find(r => r.id === id);
   }
 
-  function toggleFavorite(recipeId, button) {
-    if (favorites.includes(recipeId)) {
-      favorites = favorites.filter(id => id !== recipeId);
-      saveFavorites();
+  function createRecipeCard(recipe) {
+    const card = document.createElement('div');
+    card.className = 'recipe-card';
 
-      button.classList.remove('favorited');
-      button.textContent = '⭐ Favorite';
+    card.innerHTML = `
+      <img src="${recipe.image}" alt="${recipe.title}" />
+      <div class="recipe-info">
+        <div class="recipe-title">${recipe.title}</div>
+        <div class="recipe-origin">${recipe.origin}</div>
+        <div class="recipe-desc">${recipe.description}</div>
+      </div>
+      <div class="recipe-full">${recipe.recipe}</div>
+    `;
 
-      const card = button.closest('.recipe-card');
-      if (card) card.remove();
-    } else {
-      favorites.push(recipeId);
-      saveFavorites();
+    // Toggle full recipe on card click
+    card.addEventListener('click', () => {
+      const full = card.querySelector('.recipe-full');
+      if (full.style.display === 'block') {
+        full.style.display = 'none';
+      } else {
+        full.style.display = 'block';
+      }
+    });
 
-      button.classList.add('favorited');
-      button.textContent = '⭐ Favorited';
-    }
+    return card;
   }
 
-  // Bootstrap modal instance
-  const recipeModal = new bootstrap.Modal(document.getElementById('recipeModal'));
-  const modalTitle = document.getElementById('recipeModalLabel');
-  const modalBody = document.getElementById('modalRecipeText');
+  const container = document.getElementById('dinners-container');
 
-  function showRecipeModal(recipe) {
-    modalTitle.textContent = recipe.title; // <-- changed here
-    modalBody.textContent = recipe.recipe;
-    recipeModal.show();
-  }
+  dinners.forEach(dinner => {
+    const dinnerDiv = document.createElement('div');
+    dinnerDiv.className = 'dinner';
 
-  function renderFavorites() {
-    container.innerHTML = '';
-    const favoriteRecipes = recipes.filter(recipe => favorites.includes(recipe.id));
+    const title = document.createElement('div');
+    title.className = 'dinner-title';
+    title.textContent = dinner.title;
+    dinnerDiv.appendChild(title);
 
-    if (favoriteRecipes.length === 0) {
-      container.innerHTML = '<p>No favorite recipes yet.</p>';
-    } else {
-      favoriteRecipes.forEach(recipe => {
-        const card = document.createElement('div');
-        card.classList.add('recipe-card');
+    const recipesDiv = document.createElement('div');
+    recipesDiv.className = 'recipes';
 
-        card.innerHTML = `
-          <div class="recipe-image" style="background-image: url('${recipe.image}')"></div>
-          <h2 class="recipe-title">${recipe.title}</h2>
-          <p class="recipe-description">${recipe.description}</p>
-        `;
+    dinner.recipeIds.forEach(id => {
+      const recipe = findRecipeById(id);
+      if (recipe) {
+        recipesDiv.appendChild(createRecipeCard(recipe));
+      }
+    });
 
-        const buttonsDiv = document.createElement('div');
-        buttonsDiv.classList.add('buttons');
-
-        const favButton = document.createElement('button');
-        favButton.classList.add('favorite-btn', 'favorited');
-        favButton.textContent = '⭐ Favorited';
-        favButton.addEventListener('click', () => toggleFavorite(recipe.id, favButton));
-
-        const detailsButton = document.createElement('button');
-        detailsButton.textContent = 'Show Recipe';
-        detailsButton.addEventListener('click', () => showRecipeModal(recipe));
-
-        buttonsDiv.appendChild(favButton);
-        buttonsDiv.appendChild(detailsButton);
-        card.appendChild(buttonsDiv);
-
-        container.appendChild(card);
-      });
-    }
-  }
-
-  renderFavorites();
+    dinnerDiv.appendChild(recipesDiv);
+    container.appendChild(dinnerDiv);
+  });
 </script>
 
-  </script>
 </body>
 </html>
