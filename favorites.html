@@ -9,27 +9,52 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fff8f0;
-      color: #333;
-      padding: 2rem;
-      max-width: 100%;
-      margin: auto;
-      height: 90vh;
-      display: flex;
-      flex-direction: column;
-    }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff8f0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
+    flex: 1;
+  }
+
+  /* Main content wrapper */
+  main {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  footer {
+    background-color: #ff2600;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.95rem;
+    width: 100%;
+    margin-top: auto;
+  }
+
     h1 {
       margin-bottom: 1rem;
     }
     #favorite-recipes {
       display: flex;
+      align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
       overflow-y: auto;
       flex-grow: 1;
       padding-right: 0.5rem;
+      justify-content: center; /*Centers the div*/
+      margin-bottom: 25px;
     }
     .recipe-card {
       background: white;
@@ -104,11 +129,13 @@
   </style>
 </head>
 <body>
-  <h1>Favorite Recipes</h1>
-  <div id="favorite-recipes"></div>
+  <main>
+   <h1 style="text-align: center;">Favorite Recipes</h1>
+    <div id="favorite-recipes"></div>
+  </main>
 
-  <!-- Bootstrap Modal -->
-  <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
+  <!-- Bootstrap Modal for Alert -->
+  <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true"> 
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-danger text-white">
@@ -122,12 +149,14 @@
       </div>
     </div>
   </div>
-
+  <footer>
+    © 2025 | 81 City 81 Flavours -  | Prepared by: Berat Eker - Toprak Ateş - Ali Can Kumru
+  </footer>
   <!-- Bootstrap JS CDN + Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-  const recipes = [
+    const recipes = [
     {
       "id": 1,
       "origin": "Adana",
@@ -868,6 +897,7 @@
   }
   ];
 
+ 
   const container = document.getElementById('favorite-recipes');
   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
@@ -945,7 +975,6 @@
 
   renderFavorites();
 </script>
-
   </script>
 </body>
 </html>
